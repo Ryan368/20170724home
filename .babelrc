@@ -1,0 +1,9 @@
+{
+    "plugins": ["transform-runtime",
+        ["component", [
+            {"library": "mint-ui",
+            "style": true}
+        ]],
+        // ["transform-remove-strict-mode"]  //用于禁用webpack打包生成的bundle.js中的严格模式
+    ]
+}

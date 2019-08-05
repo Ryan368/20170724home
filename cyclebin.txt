@@ -1,0 +1,61 @@
+原接口newsInfo版面
+
+
+ <template>
+     <div class="newsinfo-container">
+         <h3 class="title">title</h3>
+         <p class="subtitle">
+             <span>发表时间：time</span>
+             <span>点击：1次</span>
+         </p>
+         <!-- <a class="content" v-bind:href="newsInfo[id].url">详情链接</a>  -->
+         <hr>
+         <my-comment :id="this.id"></my-comment>
+     </div>
+ </template
+ <script>
+ // 导入评论子组件
+ import comment from '../subcomponents/comment.vue
+ export default {
+     data() {
+         return {
+             id: this.$route.params.id,
+             newsInfo: []
+         }
+     },
+     created() {
+         this.getNewsInfo()
+     },
+     methods: {
+         getNewsInfo() {
+             this.$http.get ( 'http://www.liulongbin.top:3005/api/getnew/3' )
+                 .then (res => {
+                         this.newsInfo = res
+                         console.log("newsInfo: ",this.newsInfo)
+                 })
+                 .catch (() => console.log("连接出错！"))
+         }
+     },
+     components: {
+         'my-comment': comment
+     }
+ }
+ </script
+ <style lang="scss" scoped>
+     .newsinfo-container{
+         margin: 0 4px;
+         .title{
+             text-align: center;
+             font-size: 16px;
+         }
+         .subtitle{
+             display: flex;
+             justify-content: space-between;
+             font-size: 10px;
+             color: blue;
+         }
+         .content{
+             font-size: 14px;
+         }
+     }
+ </style
